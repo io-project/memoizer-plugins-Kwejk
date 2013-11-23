@@ -2,6 +2,7 @@ package pl.edu.uj.tcs.memoizer.plugins.impl.kwejk;
 
 import pl.edu.uj.tcs.memoizer.plugins.IPlugin;
 import pl.edu.uj.tcs.memoizer.plugins.IPluginFactory;
+import pl.edu.uj.tcs.memoizer.serialization.StateObject;
 import java.awt.Image;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class KwejkDownloadPluginFactory implements IPluginFactory {
 		return null;
 	}
 	
-	public IPlugin newInstance(Map<String, byte[]> pluginStateMap){
+	public IPlugin newInstance(StateObject pluginStateMap){
 		return new KwejkDownloadPlugin(pluginStateMap);
 	}
 	

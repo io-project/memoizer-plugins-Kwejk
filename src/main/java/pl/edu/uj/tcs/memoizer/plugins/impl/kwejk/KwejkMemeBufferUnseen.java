@@ -5,12 +5,13 @@ import java.util.Map;
 import pl.edu.uj.tcs.memoizer.plugins.EViewType;
 import pl.edu.uj.tcs.memoizer.plugins.Meme;
 import pl.edu.uj.tcs.memoizer.plugins.impl.MemeBuffer;
+import pl.edu.uj.tcs.memoizer.serialization.StateObject;
 
 public class KwejkMemeBufferUnseen extends MemeBuffer {
 	
 	private static EViewType viewType = EViewType.UNSEEN;
 
-	public KwejkMemeBufferUnseen(Map<String, byte[]> state){
+	public KwejkMemeBufferUnseen(StateObject state){
 		super(state);
 	}
 	

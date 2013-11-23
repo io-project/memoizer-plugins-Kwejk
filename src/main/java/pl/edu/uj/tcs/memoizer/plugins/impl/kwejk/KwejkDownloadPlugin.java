@@ -2,6 +2,7 @@ package pl.edu.uj.tcs.memoizer.plugins.impl.kwejk;
 
 import pl.edu.uj.tcs.memoizer.plugins.*;
 import pl.edu.uj.tcs.memoizer.plugins.impl.*;
+import pl.edu.uj.tcs.memoizer.serialization.StateObject;
 
 import java.net.*;
 import java.util.*;
@@ -13,7 +14,7 @@ import java.awt.Image;
  * @author pmikos (sokar92)
  */
 public final class KwejkDownloadPlugin implements IDownloadPlugin {
-	private Map<String, byte[]> _state;
+	private StateObject _state;
 	private EViewType _view;
 	private Map<EViewType, IMemeBuffer> _viewBuffer;
 	
@@ -21,7 +22,7 @@ public final class KwejkDownloadPlugin implements IDownloadPlugin {
 	 * Instantiates new download plugin designed
 	 * for "www.kwejk.pl" page
 	 */
-	public KwejkDownloadPlugin(Map<String, byte[]> state){		
+	public KwejkDownloadPlugin(StateObject state){		
 		_state = state;
 		_view = null;
 		
@@ -33,7 +34,7 @@ public final class KwejkDownloadPlugin implements IDownloadPlugin {
 	}
 	
 	@Override
-	public Map<String, byte[]> getState(){
+	public StateObject getState(){
 		return _state;
 	}
 
@@ -42,7 +43,7 @@ public final class KwejkDownloadPlugin implements IDownloadPlugin {
 		List<EViewType> list = new ArrayList<EViewType>();
 		list.add(EViewType.CHRONOLOGICAL);
 		list.add(EViewType.FAVOURITE);
-		list.add(EViewType.UNSEEN);
+		//list.add(EViewType.UNSEEN);
 		list.add(EViewType.QUEUE);
 		return list;
 	}
