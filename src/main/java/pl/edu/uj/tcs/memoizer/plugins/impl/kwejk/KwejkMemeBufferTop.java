@@ -16,9 +16,8 @@ public class KwejkMemeBufferTop extends MemeBuffer {
 	
 	@Override
 	protected Iterable<Meme> downloadMemes(){
-		return null; 
-		/*DemotyDownloader.downloadMemesFromPage(
-				DemotyUrlFactory.getTopByPercentPageUrl(1),
-				viewType);*/
+		return KwejkDownloader.downloadMemesFromPage(
+				KwejkUrlFactory.getTopByPopularPageUrl(1),
+				viewType);
 	}
 }

@@ -9,14 +9,18 @@ class KwejkUrlFactory {
 	}
 	
 	static String getMainPageUrl(int pageNum){
-		return _workingUrl + "/page/" + pageNum;
+		return _workingUrl + "/strona/" + pageNum;
 	}
 	
 	static String getQueuePageUrl(int pageNum){
-		return _workingUrl + "/poczekalnia/page/" + pageNum;
+		return _workingUrl + "/oczekujace/" + pageNum;
 	}
 	
-	static String getTopByPercentPageUrl(int pageNum){
-		return _workingUrl + "/topka/procenty/page/" + pageNum;
+	static String getTopByPopularPageUrl(int pageNum){
+		return _workingUrl + "/top/" + pageNum;
+	}
+	
+	static String getTopByVotesPageUrl(int pageNum){
+		return _workingUrl + "/top/votes/" + pageNum;
 	}
 }

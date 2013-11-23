@@ -16,9 +16,8 @@ public class KwejkMemeBufferChrono extends MemeBuffer {
 	
 	@Override
 	protected Iterable<Meme> downloadMemes(){
-		return null;
-		/*DemotyDownloader.downloadMemesFromPage(
-				DemotyUrlFactory.getMainPageUrl(1),
-				viewType);*/
+		return KwejkDownloader.downloadMemesFromPage(
+				KwejkUrlFactory.getMainPageUrl(1),
+				viewType);
 	}
 }

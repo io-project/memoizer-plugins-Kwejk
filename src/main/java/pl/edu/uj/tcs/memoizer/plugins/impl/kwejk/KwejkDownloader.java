@@ -1,8 +1,9 @@
 package pl.edu.uj.tcs.memoizer.plugins.impl.kwejk;
 
 import java.io.IOException;
-import java.net.*;
-import java.util.*;
+import java.net.URL;
+import java.util.List;
+import java.util.ArrayList;
 import pl.edu.uj.tcs.memoizer.plugins.*;
 
 import org.jsoup.Jsoup;
@@ -52,10 +53,10 @@ class KwejkDownloader {
 		if(kwejkPageSource == null)
 			return result;
 		
-		Elements demotySection = kwejkPageSource.select("section.demots");
-		for(Element elem : demotySection){
-			Elements demotivators = elem.select("div.demotivator[id]");
-			result.addAll(demotivators);
+		Elements kwejkiDiv = kwejkPageSource.select("div.mediaPair");
+		for(Element elem : kwejkiDiv){
+			Elements kwejk = elem.select("div.shot[title]");
+			result.addAll(kwejk);
 		}
 		
 		return result;
@@ -70,19 +71,22 @@ class KwejkDownloader {
 		
 		for(Element meme : memeNodes){
 			try{
-				String desc = "";
+				String description = "";
 				
-				Element picLink = meme.select("a.picwrapper[href]").first();
+				Element desc = meme.select("div.desc > div.tooltip-title-container > div.tooltip-title-left-corner > div.tooltip-title").first();
+				String title = extractTitleFromDesc(desc);
+				
+				Element media = meme.select("div.content > div.media").first();
+				Element picLink = media.select("a.mOUrl[href]").first();
 				URL pageLink = extractPageLinkFromATag(picLink);
 				
-				Element image = picLink.select("img.demot[src]").first();
+				Element image = picLink.select("img[src]").first();
 				URL imageLink = extractImageLinkFromImgTag(image);
-				String title = extractTitleFromImgTag(image);
 				int width = extractWidthFromImgTag(image);
 				int heigth = extractHeightFromImgTag(image);
 				
 				if(imageLink != null)
-					lst.add(new Meme(imageLink, pageLink, title, desc, width, heigth, null, viewType, null));
+					lst.add(new Meme(imageLink, pageLink, title, description, width, heigth, null, viewType, null));
 			} catch(Exception e){}
 		}
 		
@@ -103,9 +107,9 @@ class KwejkDownloader {
 		return null;
 	}
 	
-	private static String extractTitleFromImgTag(Element imgTagElement){
+	private static String extractTitleFromDesc(Element desc){
 		try{
-			return imgTagElement.attr("alt");
+			return desc.text();
 		} catch(Exception e){}
 		return "";
 	}
